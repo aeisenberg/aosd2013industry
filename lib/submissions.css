@@ -1,6 +1,26 @@
+/* Custom parts */
+.author {
+
+}
+
+#authorsContainer {
+	text-align: center;
+	padding: 10;
+}
+.authorTitle {
+	padding-left: 5px;
+}
+.authorText {
+	padding-right: 5px;
+}
+.authorWord {
+	padding-right: 5px;
+	font-weight: bold;
+}
+
+
+/* Showdown original */
 html,body {
-	margin:0;
-	padding:0;
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 	font-size: 90%;
 	background-color: #e0d8d8;
@@ -10,13 +30,11 @@ html {
 	overflow: hidden;
 }
 
-textarea {
+textarea.pane {
 	font-family: monospace;
 }
 
 #pageHeader {
-	margin: 0;
-	padding: 0;
 	text-align: center;
 	margin-bottom: 0;
 	margin-top: 0.4em;
@@ -28,10 +46,7 @@ textarea {
 }
 
 #pageHeader * {
-	margin: 0;
-	padding: 0;
 	line-height: 1em;
-	font-weight: 100;
 }
 
 #pageHeader a {
