@@ -10,12 +10,13 @@
 </head>
 <body>
 <div id="pageHeader">
-	<h1>AOSD 2013 Industry track submission</h1>
+	<h2>AOSD 2013 Industry track submission</h2>
 	<p>Paste your submission into the left pane using <a href="http://daringfireball.net/projects/markdown/">markdown</a> syntax
 	<br/>Questions or comments, send an email to the <a target="_blank" href="mailto:industry@aosd.net">industry@aosd.net</a></p>
 	<button id="submit">Submit now!</button>
 	<div id="authorsContainer">
-		<table id="authorsTable">
+		<strong>Title: <textarea id="title" rows="1" columns="40"></textarea><span id="titleImg"></span></strong>
+		<table align="center" id="authorsTable">
 		</table>
 		<button id="addAuthorButton">Add author</button>
 		<button id="removeAuthorButton">Remove author</button>
@@ -23,7 +24,7 @@
 </div>
 <div id="leftContainer">
 	<div class="paneHeader">
-		<span>Submission</span>
+		<span>Submission</span><span>(Remaining characters:</span><span id="numChars"></span><span>)</span>
 	</div>
 	<textarea id="inputPane" cols="80" rows="20" class="pane">Paste your submission in the left pane.</textarea> 
 </div>
@@ -398,7 +399,7 @@ Like code blocks, code spans will be displayed in a monospaced typeface.  Markdo
 </div>
 	
 <div id="footer">
-	<span id="byline">
+		<span id="byline">
 		Markdown conversion and preview provided by
 		<a href="http://webscripts.softpedia.com/script/WYSIWYG-Editors/Showdown-66544.html"><b>Showdown v0.9.0</b></a>.
 		<script type="text/javascript">

@@ -1,10 +1,11 @@
 /* Custom parts */
-#authorsContainer {
-	padding: 10;
-	font-size: 120%;
+#authorsTable {
+	text-align: center;
 }
-.instructions {
-	text-align: left;
+
+#authorsContainer {
+	text-align: center;
+	padding: 10;
 }
 .authorTitle {
 	padding-left: 5px;
