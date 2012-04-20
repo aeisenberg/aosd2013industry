@@ -19,7 +19,7 @@ if ($) {
 				authors.push( {
 					name: authorRows.find("#name"+ i).val(),
 					email: authorRows.find("#email"+ i).val(),
-					affilitaion: authorRows.find("#affilitaion"+ i).val()
+					affilitaion: authorRows.find("#affiliation"+ i).val()
 				});
 			}
 			
@@ -35,31 +35,39 @@ if ($) {
 			
 			// create title
 			var title = $("#title").val();
+			title = encodeURIComponent(title);
 			
 			// create the subject
 			var subject = "AOSD 2013 industry track submission: " + title;
 			
 			// create the header to the message
-			var message = "#" + title + "#\n\n" +
+			var message = "#<center>" + title + "</center>\n\n" +
 				// use a table to put the authors in
 				"<center><table>\n  <tr>";
 				
 			// table is centered, each author is a cell and each cell is centered
 			for (i = 0; i < authors.length; i++) {
 				message += "<td><center>" + 
-					authors[i].name +"<br/>\n" + 
-					authors[i].email +"<br/>\n" + 
+					authors[i].name +"<br/>\n  " + 
+					authors[i].email +"<br/>\n  " + 
 					authors[i].affiliation + "</center></td>";
 			}
 			message += "</tr>\n</table></center>\n\n";
 			message += $("#inputPane").val();
 			
-			
-			// put it all together
+			console.log("Unencoded message:");
 			console.log(message);
 			
+			// encode
+			message = encodeURIComponent(message);
+			console.log("Encoded message:");
+			console.log(message);
+			
+			// put it all together
+			var emailUri = "mailto:" + to + "?cc=" + cc + "&subject=" + subject + "&body=" + message;
+
 			// send!
-			window.open("mailto:" + to + cc + subject + message);
+			window.open(emailUri);
 			window.open("success.html");
 		}
 	
@@ -282,7 +290,7 @@ if ($) {
 			$("#numChars").text(MAX_CHARS - numChars);
 		}
 		
-		$("#inputPane").blur(setNumChars);
+		$("#inputPane").change(setNumChars);
 		setNumChars();
 		
 		// popuate author table
