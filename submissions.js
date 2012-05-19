@@ -35,10 +35,10 @@ if ($) {
 			
 			// create title
 			var title = $("#title").val();
-			title = encodeURIComponent(title);
+			var encodedtitle = encodeURIComponent(title);
 			
 			// create the subject
-			var subject = "AOSD 2013 industry track submission: " + title;
+			var subject = "AOSD 2013 industry track submission: " + encodedtitle;
 			
 			// create the header to the message
 			var message = "#<center>" + title + "</center>\n\n" +
