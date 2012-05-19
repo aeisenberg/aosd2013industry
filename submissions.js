@@ -296,7 +296,7 @@ if ($) {
 			} 
 		}
 		
-		$("#inputPane").change(setNumChars);
+		$("#inputPane").bind("keyup input paste", setNumChars);
 //		$('#exhibitb').bind('textchange', setNumChars());
 		setNumChars();
 		
