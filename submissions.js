@@ -287,10 +287,17 @@ if ($) {
 		// keep track of number of characters in submission
 		function setNumChars() {
 			var numChars = $("#inputPane").val().length;
-			$("#numChars").text(MAX_CHARS - numChars);
+			var numCharsText = $("#numChars");
+			numCharsText.text(MAX_CHARS - numChars);
+			if (numChars > MAX_CHARS) {
+				numCharsText.css('color', 'red');
+			} else {
+				numCharsText.css('color', 'black');
+			} 
 		}
 		
 		$("#inputPane").change(setNumChars);
+//		$('#exhibitb').bind('textchange', setNumChars());
 		setNumChars();
 		
 		// popuate author table
