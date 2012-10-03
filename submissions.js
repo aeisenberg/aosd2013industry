@@ -4,10 +4,11 @@
 // See http://www.linfo.org/bsdlicense.html
 
 /*global $ document alert console window */
+/*jslint browser:true */
 
 
 if ($) {
-	var MAX_CHARS = 5000;
+	var MAX_CHARS = 12000;
 	$(document).ready(function() {
 	
 		// sends the email
@@ -19,7 +20,7 @@ if ($) {
 				authors.push( {
 					name: authorRows.find("#name"+ i).val(),
 					email: authorRows.find("#email"+ i).val(),
-					affilitaion: authorRows.find("#affiliation"+ i).val()
+					affiliation: authorRows.find("#affiliation"+ i).val()
 				});
 			}
 			
@@ -55,20 +56,37 @@ if ($) {
 			message += "</tr>\n</table></center>\n\n";
 			message += $("#inputPane").val();
 			
-			console.log("Unencoded message:");
-			console.log(message);
+//			console.log("Unencoded message:");
+//			console.log(message);
 			
 			// encode
-			message = encodeURIComponent(message);
-			console.log("Encoded message:");
-			console.log(message);
+			var encodedMessage = encodeURIComponent(message);
+//			console.log("Encoded message:");
+//			console.log(message);
 			
 			// put it all together
-			var emailUri = "mailto:" + to + "?cc=" + cc + "&subject=" + subject + "&body=" + message;
+			var emailUri = "mailto:" + to + "?cc=" + cc + "&subject=" + subject + "&body=" + encodedMessage;
 
-			// send!
+			// open email in default client so user can send
 			window.open(emailUri);
-			window.open("success.html");
+			
+			var lastName = authors[0].name.split(" ");
+			lastName = lastName[lastName.length-1];
+			if (!lastName) {
+				lastName = authors[0].name;
+			}
+			
+			// also ping the servers and store info there.
+			$.post("http://static.springsource.org/aosd/submit.php", { author : lastName, submission : message }, 
+				function(data, textStatus) {
+					if (textStatus === 'success') {
+						window.open("success.html");
+					} else {
+						alert("Error sending submission.  Reason: " + textStatus + "\n" +
+								"Send by email instead or try with a more modern browser.");
+					}
+				}, "text");
+			
 		}
 	
 		// validations
@@ -297,7 +315,6 @@ if ($) {
 		}
 		
 		$("#inputPane").bind("keyup input paste", setNumChars);
-//		$('#exhibitb').bind('textchange', setNumChars());
 		setNumChars();
 		
 		// popuate author table
